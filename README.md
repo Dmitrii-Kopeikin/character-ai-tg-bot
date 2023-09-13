@@ -1,4 +1,4 @@
-# Tegro Ton Bot
+# Character AI Telegram Bot
 
 [![Python](https://img.shields.io/badge/Python-3.11-blue)](https://www.python.org/)
 [![Aiogram](https://img.shields.io/badge/Aiogram-3.0.0-blue)](https://docs.aiogram.dev/en/latest/)
