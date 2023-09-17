@@ -30,11 +30,12 @@ def init_application() -> FastAPI:
     init_logging()
     # Init Databases.
     database = Database()
+    # if config.debug.enabled:
+    #     web.add_start_event_handler(add_test_characters)
 
     # Init FastAPI app.
     web = WebApp()
     web.add_start_event_handler(database.init_database)
-    web.add_shutdown_event_handler(database.close)
 
     # Init CharacterAiBot
     character_ai_bot = CharacterAiBot(
@@ -43,13 +44,10 @@ def init_application() -> FastAPI:
     )
 
     web.add_start_event_handler(database.init_database)
-
-    if config.debug.enabled:
-        web.add_start_event_handler(add_test_characters)
-
     web.add_start_event_handler(character_ai_bot.init_webhook)
     web.add_start_event_handler(character_ai_bot.set_ui_commands)
 
+    web.add_shutdown_event_handler(database.close)
     web.add_shutdown_event_handler(character_ai_bot.close)
     web.add_shutdown_event_handler(amplitude_client.shutdown)
 

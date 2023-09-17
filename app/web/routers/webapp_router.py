@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends, Request
 from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.templating import Jinja2Templates
 
-from app.database.dal import conversation_dal, user_dal, character_dal
+from app.database.dal import character_dal, conversation_dal, user_dal
 
 from ..dependencies import (
     get_amplitude_client,
@@ -57,7 +57,7 @@ async def character_chosen(
     user = await user_dal.get(tg_id=user_tg_id, session=session)
     character = await character_dal.get(id=character_id, session=session)
 
-    if not character or not user:
+    if not all((user, character)):
         await bot.send_message(
             text="Произошла ошибка. Попробуйте еще раз.",
             chat_id=user_tg_id,

@@ -10,6 +10,7 @@ class MessageModel(BaseModel):
 class RequestModel(BaseModel):
     model: str
     messages: List[MessageModel]
+    user: int
 
 
 class ChoiceModel(BaseModel):

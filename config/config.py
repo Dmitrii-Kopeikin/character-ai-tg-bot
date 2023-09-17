@@ -76,6 +76,9 @@ class Amplitude(BaseModel):
 
 
 class OpenAI(BaseModel):
+    model: str
+    max_tokens: int
+    context_requests_count: int
     gateway: str
     api_key: str
     request_attempts: int

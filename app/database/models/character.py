@@ -1,4 +1,4 @@
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, List
 
 from sqlalchemy import String
 from sqlalchemy.orm import Mapped, mapped_column, relationship
@@ -32,7 +32,7 @@ class Character(BaseModel):
         nullable=False,
     )
 
-    conversations: Mapped["Conversation"] = relationship(
+    conversations: Mapped[List["Conversation"]] = relationship(
         "Conversation",
         back_populates="character",
     )

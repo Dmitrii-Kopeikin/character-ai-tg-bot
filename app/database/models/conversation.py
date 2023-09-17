@@ -1,4 +1,4 @@
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, List
 
 from sqlalchemy import BigInteger, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
@@ -7,8 +7,8 @@ from .base_model import BaseModel
 
 if TYPE_CHECKING:
     from .character import Character
-    from .user import User
     from .conversation_request import ConversationRequest
+    from .user import User
 
 
 class Conversation(BaseModel):
@@ -29,7 +29,7 @@ class Conversation(BaseModel):
         back_populates="conversations",
         foreign_keys="Conversation.user_id",
     )
-    requests: Mapped["ConversationRequest"] = relationship(
+    requests: Mapped[List["ConversationRequest"]] = relationship(
         "ConversationRequest",
         back_populates="conversation",
     )
