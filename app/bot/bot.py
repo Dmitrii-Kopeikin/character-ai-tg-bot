@@ -3,6 +3,7 @@ from typing import Dict
 
 from aiogram import Bot, Dispatcher, types
 from aiogram.fsm.storage.redis import RedisStorage
+from aiogram.utils.chat_action import ChatActionMiddleware
 from redis.asyncio import Redis
 from sqlalchemy.ext.asyncio import async_sessionmaker
 
@@ -26,6 +27,8 @@ class CharacterAiBot(metaclass=SingletonMeta):
         storage = RedisStorage(redis=redis)
 
         self.dispatcher = Dispatcher(storage=storage, bot=self.bot)
+
+        self.dispatcher.message.middleware(ChatActionMiddleware())
 
         self.dispatcher.update.middleware(
             DatabaseSessionMiddleware(session_pool=sessionmaker)
@@ -59,8 +62,18 @@ class CharacterAiBot(metaclass=SingletonMeta):
     async def set_ui_commands(self):
         await self.bot.set_my_commands(
             commands=[
-                types.BotCommand(command="start", description="Start"),
-                types.BotCommand(command="menu", description="Menu"),
+                types.BotCommand(
+                    command="start",
+                    description="Start",
+                ),
+                types.BotCommand(
+                    command="menu",
+                    description="Menu",
+                ),
+                types.BotCommand(
+                    command="create_character",
+                    description="Create Character",
+                ),
             ],
         )
 

@@ -1,30 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/css/styles.css">
-    <title>Choose Character</title>
-    <link id="favicon"
-          rel="icon"
-          type="image/x-icon"
-          href="static/images/favicon.ico">
-  </head>
-  <body>
-    <div class="container">
-      {% for character in characters %}
-        <div class="character-card" data-id="{{ character.id }}">
-          <div class="character-card-image">
-            <img src="{{ character.image }}" alt="{{ character.name }}">
-          </div>
-          <div class="character-card-title">
-            <span class="character-card-name">{{ character.name }}</span>
-            <span class="character-card-description">{{ character.description }}</span>
-          </div>
-        </div>
-      {% endfor %}
+{% extends "base.html" %}
+{% block content %}
+  {% for character in characters %}
+    <div class="character-card" data-id="{{ character.id }}">
+      <div class="character-card-image">
+        <img src="{{ character.image }}" alt="{{ character.name }}">
+      </div>
+      <div class="character-card-title">
+        <span class="character-card-name">{{ character.name }}</span>
+        <span class="character-card-description">{{ character.description }}</span>
+      </div>
     </div>
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <script src="/static/js/app.js"></script>
-  </body>
-</html>
+  {% endfor %}
+{% endblock content %}
+{% block scripts_bottom %}
+  <script src="/static/js/choose-character.js"></script>
+{% endblock scripts_bottom %}

@@ -2,6 +2,7 @@ from typing import List
 
 from aiogram.types import Message
 from sqlalchemy.ext.asyncio import AsyncSession
+from aiogram import flags
 
 from app.amplitude_client import amplitude_client
 from app.database.dal import conversation_request_dal, user_dal
@@ -9,13 +10,12 @@ from app.database.models import Character
 from app.open_ai import OpenAiException, open_ai
 
 
+@flags.chat_action(action="typing", initial_sleep=1.0)
 async def message_handler(
     message: Message,
     user_id: int,
     session: AsyncSession,
 ) -> None:
-    await message.bot.send_chat_action(message.from_user.id, "typing")
-
     user = await user_dal.get(id=user_id, session=session, prefetch=True)
     character: Character = (
         await user.current_conversation.awaitable_attrs.character

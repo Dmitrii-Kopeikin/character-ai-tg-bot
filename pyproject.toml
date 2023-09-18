@@ -27,6 +27,7 @@ httpx = "^0.25.0"
 openai = "^0.28.0"
 tiktoken = "^0.5.1"
 gunicorn = "^21.2.0"
+python-multipart = "^0.0.6"
 
 
 [build-system]

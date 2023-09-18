@@ -1,0 +1,62 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    vertical-align: top;
+}
+
+input {
+    width: 100%;
+    border-radius: 5px;
+}
+
+textarea {
+    width: 100%;
+    border-radius: 5px;
+}
+
+.description {
+    min-height: 50px;
+}
+
+.greetings {
+    min-height: 100px;
+}
+
+.prompt {
+    min-height: 200px;
+}
+
+.div-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    row-gap: 10px;
+    margin-bottom: 20px;
+    /* text-align: left; */
+}
+
+.div-form,
+#submit-btn {
+    font: normal normal bold 20px/24px SF Pro;
+    letter-spacing: 0px;
+    color: #27a7e7;
+    opacity: 1;
+}
+
+.div-form form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.div-form span {
+    font-size: 16px;
+    color: red;
+}
+
+.form-header h1 {
+    text-align: center;
+}

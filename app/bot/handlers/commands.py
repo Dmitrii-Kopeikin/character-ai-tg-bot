@@ -24,3 +24,13 @@ async def menu_handler(
             f"?user_tg_id={message.from_user.id}",
         ),
     )
+
+
+async def create_character_handler(message: Message) -> None:
+    await message.answer(
+        text="Создай персонажа:",
+        reply_markup=get_choose_character_keyboard(
+            f"{config.server.host}/create-character"
+            f"?user_tg_id={message.from_user.id}",
+        ),
+    )
